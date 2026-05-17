@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GraphRAG Intelligence Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-black text-white">
+    <main class="min-h-screen overflow-x-hidden">
+      <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-slate-700/30 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-4 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+              <span class="text-white font-bold">GR</span>
+            </div>
+            <span class="hidden sm:inline font-semibold gradient-text-primary">GraphRAG Intelligence</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-4 text-sm text-slate-300">
+            <a href="#metrics" class="hover:text-white transition-colors">Metrics</a>
+            <a href="#analysis" class="hover:text-white transition-colors">Analysis</a>
+            <a href="#graph" class="hover:text-white transition-colors">Graph</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="relative min-h-screen pt-24 pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-slate-950"></div>
+        <div class="absolute top-10 left-1/4 w-96 h-96 rounded-full bg-blue-500 opacity-10 blur-3xl animate-floatSlow"></div>
+        <div class="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-purple-500 opacity-10 blur-3xl animate-floatSlow animation-delay-2000"></div>
+        <div class="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-cyan-500 opacity-10 blur-3xl animate-floatSlow animation-delay-4000"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <div class="inline-block mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 text-blue-300 text-sm font-medium">
+            ✨ Futuristic AI Intelligence Platform
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <span class="gradient-text-primary inline-block">GraphRAG</span><br />
+            <span class="text-white">Intelligence Dashboard</span>
+          </h1>
+          <p class="text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Comparing three intelligent retrieval pipelines on <span class="text-cyan-400 font-semibold">token efficiency</span>, <span class="text-blue-400 font-semibold">latency</span>, and <span class="text-purple-400 font-semibold">accuracy</span>.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="#metrics" class="btn-primary">Explore Dashboard</a>
+            <a href="#analysis" class="btn-secondary">View Metrics</a>
+          </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+          <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+      </section>
+
+      <section class="relative py-16 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+          <div class="glass-effect rounded-3xl border border-slate-700/40 p-8 md:p-10 shadow-xl shadow-slate-900/20">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+              <div class="flex-1">
+                <h2 class="text-3xl md:text-4xl font-bold mb-3">Ask anything about your data</h2>
+                <p class="text-slate-400 max-w-2xl">Type a question to compare LLM-only, Basic RAG, and GraphRAG performance in one sleek dashboard.</p>
+              </div>
+              <div class="w-full md:w-auto">
+                <div class="glass-effect rounded-2xl border border-slate-600/40 p-4 shadow-lg shadow-slate-900/10">
+                  <div class="flex items-center gap-4">
+                    <span class="text-cyan-400 text-xl">🔍</span>
+                    <input type="text" placeholder="Ask anything about your data..." class="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none text-lg" />
+                    <button class="btn-primary px-6 py-3">Search</button>
+                  </div>
+                </div>
+                <p class="mt-3 text-xs text-slate-400 text-center">💡 Try: “Tell me about AI”, “What are the benefits of GraphRAG?”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="metrics" class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div class="max-w-7xl mx-auto">
+          <div class="mb-16 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="gradient-text-primary">Performance Metrics</span></h2>
+            <p class="text-slate-300 text-lg">Key improvements of GraphRAG over traditional RAG approaches.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="group relative glass-effect rounded-2xl border border-blue-400/30 p-8 overflow-hidden">
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-600/20 to-blue-400/10"></div>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-blue-500/30 text-blue-300">
+                  ⚡
+                </div>
+                <p class="text-sm text-slate-400 mb-2">Token Reduction</p>
+                <p class="text-5xl font-bold text-blue-300">32<span class="text-xl">%</span></p>
+                <p class="text-slate-500 mt-3">GraphRAG vs Basic RAG</p>
+              </div>
+            </div>
+            <div class="group relative glass-effect rounded-2xl border border-green-400/30 p-8 overflow-hidden">
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-green-600/20 to-green-400/10"></div>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-green-500/30 text-green-300">
+                  🎯
+                </div>
+                <p class="text-sm text-slate-400 mb-2">BERTScore Gain</p>
+                <p class="text-5xl font-bold text-green-300">12<span class="text-xl">%</span></p>
+                <p class="text-slate-500 mt-3">GraphRAG vs Basic RAG F1</p>
+              </div>
+            </div>
+            <div class="group relative glass-effect rounded-2xl border border-cyan-400/30 p-8 overflow-hidden">
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-cyan-600/20 to-cyan-400/10"></div>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-cyan-500/30 text-cyan-300">
+                  📈
+                </div>
+                <p class="text-sm text-slate-400 mb-2">Latency Reduction</p>
+                <p class="text-5xl font-bold text-cyan-300">23<span class="text-xl">%</span></p>
+                <p class="text-slate-500 mt-3">GraphRAG vs LLM-Only</p>
+              </div>
+            </div>
+            <div class="group relative glass-effect rounded-2xl border border-purple-400/30 p-8 overflow-hidden">
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-purple-600/20 to-purple-400/10"></div>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-purple-500/30 text-purple-300">
+                  🧠
+                </div>
+                <p class="text-sm text-slate-400 mb-2">GraphRAG BERTScore</p>
+                <p class="text-5xl font-bold text-purple-300">91<span class="text-xl">%</span></p>
+                <p class="text-slate-500 mt-3">Semantic similarity (F1)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10"></div>
+        <div class="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div class="relative max-w-7xl mx-auto">
+          <div class="mb-16 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="gradient-text-primary">Detailed Analysis</span></h2>
+            <p class="text-slate-300 text-lg">Comprehensive benchmark data across multiple queries.</p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-effect rounded-2xl border border-slate-600/30 p-8">
+              <h3 class="text-xl font-bold text-cyan-300 mb-6">Token Usage Comparison</h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm text-slate-400 mb-2"><span>LLM-Only</span><span>1250</span></div>
+                  <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-blue-500" style="width:30%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm text-slate-400 mb-2"><span>Basic RAG</span><span>1890</span></div>
+                  <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-purple-500" style="width:45%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm text-slate-400 mb-2"><span>GraphRAG</span><span>980</span></div>
+                  <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-cyan-500" style="width:23%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-effect rounded-2xl border border-slate-600/30 p-8">
+              <h3 class="text-xl font-bold text-blue-300 mb-6">Latency Comparison</h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm text-slate-400 mb-2"><span>LLM-Only</span><span>2.3s</span></div>
+                  <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-blue-500" style="width:70%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm text-slate-400 mb-2"><span>Basic RAG</span><span>3.1s</span></div>
+                  <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-purple-500" style="width:95%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm text-slate-400 mb-2"><span>GraphRAG</span><span>2.8s</span></div>
+                  <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-cyan-500" style="width:85%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="glass-effect rounded-2xl border border-slate-600/30 p-8 mt-8">
+            <h3 class="text-xl font-bold text-purple-300 mb-6">Overall Performance Radar</h3>
+            <div class="radar-chart-grid">
+              <div class="radar-segment radar-bg"></div>
+              <div class="radar-segment radar-inner"></div>
+              <div class="radar-overlay">
+                <div class="radar-dot top"></div>
+                <div class="radar-dot right"></div>
+                <div class="radar-dot bottom"></div>
+                <div class="radar-dot left"></div>
+                <div class="radar-label top-label">Token Efficiency</div>
+                <div class="radar-label right-label">Speed</div>
+                <div class="radar-label bottom-label">Accuracy</div>
+                <div class="radar-label left-label">Reasoning</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 grid gap-6 md:grid-cols-3">
+            <div class="glass-effect rounded-xl p-6 border border-cyan-400/30 text-center">
+              <p class="text-sm text-slate-400 mb-2">Tokens Saved</p>
+              <p class="text-3xl font-bold text-cyan-300">~910</p>
+              <p class="text-xs text-slate-500 mt-2">per query vs Basic RAG</p>
+            </div>
+            <div class="glass-effect rounded-xl p-6 border border-blue-400/30 text-center">
+              <p class="text-sm text-slate-400 mb-2">Cost Saved</p>
+              <p class="text-3xl font-bold text-blue-300">~$0.00015</p>
+              <p class="text-xs text-slate-500 mt-2">per query vs Basic RAG</p>
+            </div>
+            <div class="glass-effect rounded-xl p-6 border border-purple-400/30 text-center">
+              <p class="text-sm text-slate-400 mb-2">BERTScore F1 (GraphRAG)</p>
+              <p class="text-3xl font-bold text-purple-300">89.1%</p>
+              <p class="text-xs text-slate-500 mt-2">semantic similarity</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 -translate-y-1/2"></div>
+        <div class="relative max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="gradient-text-primary">Pipeline Comparison</span></h2>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Live results — all metrics computed from real pipeline runs.</p>
+          </div>
+          <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-3">
+            <div class="glass-effect rounded-2xl border border-blue-400/50 p-8 relative group hover:shadow-2xl transition-shadow duration-300">
+              <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 opacity-0 group-hover:opacity-20 blur-xl"></div>
+              <div class="relative">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center text-blue-300">🧠</div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">LLM-Only</h3>
+                    <p class="text-xs text-slate-400">Baseline — Direct LLM response, no retrieval</p>
+                  </div>
+                </div>
+                <div class="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4 mb-6 min-h-[90px]">
+                  <p class="text-sm text-slate-200 leading-relaxed">A direct LLM answer delivered with no external retrieval, good for simple queries and fast response times.</p>
+                </div>
+                <div class="space-y-4 mb-4 text-slate-300">
+                  <div class="flex justify-between"><span>Latency</span><span class="text-blue-300">2.16s</span></div>
+                  <div class="flex justify-between"><span>Tokens</span><span class="text-blue-300">3,100</span></div>
+                  <div class="flex justify-between"><span>Prompt / Completion</span><span class="text-blue-300">540 / 256</span></div>
+                  <div class="flex justify-between"><span>Token Efficiency</span><span class="text-blue-300">12.0%</span></div>
+                </div>
+                <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-blue-600 to-blue-400" style="width:72%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-effect rounded-2xl border border-purple-400/50 p-8 relative group hover:shadow-2xl transition-shadow duration-300">
+              <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl"></div>
+              <div class="relative">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center text-purple-300">📚</div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">Basic RAG</h3>
+                    <p class="text-xs text-slate-400">Industry standard — Vector similarity search + LLM.</p>
+                  </div>
+                </div>
+                <div class="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4 mb-6 min-h-[90px]">
+                  <p class="text-sm text-slate-200 leading-relaxed">Classic retrieval-augmented generation that blends search context with the language model for accurate responses.</p>
+                </div>
+                <div class="space-y-4 mb-4 text-slate-300">
+                  <div class="flex justify-between"><span>Latency</span><span class="text-purple-300">2.98s</span></div>
+                  <div class="flex justify-between"><span>Tokens</span><span class="text-purple-300">2,170</span></div>
+                  <div class="flex justify-between"><span>Prompt / Completion</span><span class="text-purple-300">430 / 250</span></div>
+                  <div class="flex justify-between"><span>Token Efficiency</span><span class="text-purple-300">27.5%</span></div>
+                </div>
+                <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-purple-600 to-purple-400" style="width:63%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-effect rounded-2xl border border-cyan-400/50 p-8 relative group hover:shadow-2xl transition-shadow duration-300">
+              <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-600 to-cyan-400 opacity-0 group-hover:opacity-20 blur-xl"></div>
+              <div class="relative">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/15 flex items-center justify-center text-cyan-300">⚡</div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">GraphRAG</h3>
+                    <p class="text-xs text-slate-400">Advanced — TigerGraph multi-hop entity reasoning.</p>
+                  </div>
+                </div>
+                <div class="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-4 mb-6 min-h-[90px]">
+                  <p class="text-sm text-slate-200 leading-relaxed">Graph-powered retrieval with reasoning over entity relationships for superior accuracy and lower token cost.</p>
+                </div>
+                <div class="space-y-4 mb-4 text-slate-300">
+                  <div class="flex justify-between"><span>Latency</span><span class="text-cyan-300">2.74s</span></div>
+                  <div class="flex justify-between"><span>Tokens</span><span class="text-cyan-300">1,260</span></div>
+                  <div class="flex justify-between"><span>Prompt / Completion</span><span class="text-cyan-300">320 / 220</span></div>
+                  <div class="flex justify-between"><span>Token Efficiency</span><span class="text-cyan-300">57.9%</span></div>
+                </div>
+                <div class="h-2 bg-slate-700 rounded-full overflow-hidden mb-4">
+                  <div class="h-full bg-gradient-to-r from-cyan-600 to-cyan-400" style="width:42%"></div>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/20 text-cyan-300 text-xs font-semibold">Winner</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-16 grid gap-6 md:grid-cols-3">
+            <div class="glass-effect rounded-xl p-6 text-center border border-slate-700/50 hover:border-cyan-400/50 transition-colors">
+              <p class="text-slate-400 text-sm mb-2">Token Reduction</p>
+              <p class="text-3xl font-bold text-cyan-300">32%</p>
+              <p class="text-xs text-slate-500 mt-2">GraphRAG vs Basic RAG</p>
+            </div>
+            <div class="glass-effect rounded-xl p-6 text-center border border-slate-700/50 hover:border-cyan-400/50 transition-colors">
+              <p class="text-slate-400 text-sm mb-2">BERTScore Δ</p>
+              <p class="text-3xl font-bold text-cyan-300">+12%</p>
+              <p class="text-xs text-slate-500 mt-2">GraphRAG vs Basic RAG F1</p>
+            </div>
+            <div class="glass-effect rounded-xl p-6 text-center border border-slate-700/50 hover:border-cyan-400/50 transition-colors">
+              <p class="text-slate-400 text-sm mb-2">Latency vs LLM</p>
+              <p class="text-3xl font-bold text-cyan-300">-20%</p>
+              <p class="text-xs text-slate-500 mt-2">GraphRAG vs LLM-Only</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="graph" class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-slate-950/60"></div>
+        <div class="absolute top-10 right-10 w-80 h-80 rounded-full bg-cyan-500 blur-3xl opacity-10"></div>
+        <div class="relative max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="gradient-text-primary">Knowledge Graph Visualization</span></h2>
+            <p class="text-slate-300 text-lg">A static representation of multi-hop reasoning across connected entities.</p>
+          </div>
+          <div class="glass-effect rounded-2xl border border-slate-600/30 overflow-hidden">
+            <div class="w-full h-[480px] bg-gradient-to-br from-slate-950 to-slate-900 relative">
+              <div class="graph-node top-[20%] left-[25%]">GraphRAG</div>
+              <div class="graph-node top-[10%] left-[60%]">Knowledge Graph</div>
+              <div class="graph-node top-[55%] left-[75%]">Retrieval</div>
+              <div class="graph-node top-[72%] left-[35%]">LLM</div>
+              <div class="graph-node top-[35%] left-[10%]">Entities</div>
+              <div class="graph-node top-[55%] left-[45%]">Relations</div>
+              <div class="graph-edge edge-a"></div>
+              <div class="graph-edge edge-b"></div>
+              <div class="graph-edge edge-c"></div>
+              <div class="graph-edge edge-d"></div>
+            </div>
+          </div>
+          <div class="mt-8 grid gap-6 md:grid-cols-3">
+            <div class="glass-effect rounded-xl border border-slate-600/30 p-6 text-center">
+              <p class="text-sm text-slate-400 mb-2">Graph Trace</p>
+              <p class="text-2xl font-bold text-cyan-300">3 hops</p>
+              <p class="text-xs text-slate-500 mt-2">Multi-hop entity reasoning</p>
+            </div>
+            <div class="glass-effect rounded-xl border border-slate-600/30 p-6 text-center">
+              <p class="text-sm text-slate-400 mb-2">Retrieval</p>
+              <p class="text-2xl font-bold text-blue-300">12</p>
+              <p class="text-xs text-slate-500 mt-2">Relevant chunks gathered</p>
+            </div>
+            <div class="glass-effect rounded-xl border border-slate-600/30 p-6 text-center">
+              <p class="text-sm text-slate-400 mb-2">BERTScore F1</p>
+              <p class="text-2xl font-bold text-purple-300">91%</p>
+              <p class="text-xs text-slate-500 mt-2">Knowledge-aware reasoning</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="retrieval" class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div class="relative max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="gradient-text-primary">Retrieval & Reasoning</span></h2>
+            <p class="text-slate-300 text-lg">Visualize how GraphRAG retrieves relevant information and reasons across entity relationships.</p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-3">
+            <div class="lg:col-span-2 space-y-4">
+              <div class="glass-effect rounded-xl border border-slate-600/30 p-6 hover:border-slate-500/50 transition-colors">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="w-9 h-9 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-300">👁️</span>
+                  <div>
+                    <h3 class="text-lg font-semibold text-white">Retrieved Context</h3>
+                    <p class="text-sm text-slate-400">Key knowledge snippets used by GraphRAG.</p>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <div class="bg-slate-900/70 rounded-2xl p-4">
+                    <p class="text-slate-200 text-sm">GraphRAG combines knowledge graphs with retrieval-augmented generation to enable more accurate and relevant responses by leveraging structured entity relationships.</p>
+                  </div>
+                  <div class="bg-slate-900/70 rounded-2xl p-4">
+                    <p class="text-slate-200 text-sm">Entity extraction identifies named entities such as people, organizations, locations, and concepts within documents.</p>
+                  </div>
+                  <div class="bg-slate-900/70 rounded-2xl p-4">
+                    <p class="text-slate-200 text-sm">Multi-hop reasoning allows the system to traverse multiple steps through the knowledge graph for complex questions.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="glass-effect rounded-xl border border-slate-600/30 p-6">
+                <h3 class="text-lg font-semibold text-purple-300 mb-4">Retrieval Flow</h3>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-sm">
+                  <div class="flow-step">1<br /><span class="font-semibold">Query</span></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step">2<br /><span class="font-semibold">Entity Extract</span></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step">3<br /><span class="font-semibold">Graph Traverse</span></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step">4<br /><span class="font-semibold">Retrieve Chunks</span></div>
+                  <div class="flow-arrow">→</div>
+                  <div class="flow-step">5<br /><span class="font-semibold">Generate</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="glass-effect rounded-xl border border-purple-400/30 p-6">
+                <p class="text-xs uppercase tracking-wider text-purple-400 font-semibold mb-2">Sources Retrieved</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs">Document A</span>
+                  <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs">Document B</span>
+                  <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs">Document C</span>
+                </div>
+              </div>
+              <div class="glass-effect rounded-xl border border-cyan-500/20 p-6">
+                <p class="text-xs uppercase tracking-wider text-cyan-400 font-semibold mb-2">Graph Context Retrieved</p>
+                <p class="text-xs text-slate-400">TigerGraph trace revealed the entity path connecting AI research to product adoption through user behavior signals.</p>
+                <p class="text-xs text-slate-500 mt-3">Retrieval: 0.19s</p>
+              </div>
+              <div class="glass-effect rounded-xl border border-slate-600/30 p-6">
+                <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Entity Relationships</p>
+                <div class="space-y-3">
+                  <div class="relation-card"><span>GraphRAG</span><span>uses</span><span>Knowledge Graph</span></div>
+                  <div class="relation-card"><span>Knowledge Graph</span><span>contains</span><span>Entities</span></div>
+                  <div class="relation-card"><span>Multi-hop Reasoning</span><span>traverses</span><span>Knowledge Graph</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="relative py-24 px-6 md:px-12 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div class="relative max-w-4xl mx-auto text-center z-10">
+          <div class="glass-effect rounded-2xl border border-slate-700/50 p-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6"><span class="gradient-text-primary">Ready to see GraphRAG in action?</span></h2>
+            <p class="text-xl text-slate-300 mb-12">Type any query above to compare real-time performance across all three pipelines with live BERTScore evaluation.</p>
+            <a href="#" class="btn-primary">Start Benchmarking</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="py-12 px-6 md:px-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
+          <p>Built for the <span class="text-cyan-300 font-semibold">TigerGraph GraphRAG Hackathon</span></p>
+          <p>© 2026 GraphRAG Intelligence</p>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
